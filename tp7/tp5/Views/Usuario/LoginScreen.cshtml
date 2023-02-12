@@ -1,0 +1,45 @@
+@inject IHttpContextAccessor HttpContextAccess
+
+@{
+    ViewData["Title"] = "Login";
+    @model UsuarioViewModel;
+}
+<body>
+    @if (HttpContextAccess.HttpContext?.Session.GetString(SessionRol) is not null)
+    {
+        <form asp-action="Logout" method="">
+            <div class="row mb-3">
+                <div class="offset-sm-3 col-sm-6 d-grid">
+                    <input class="btn btn-danger" type="submit" value="Cerrar Sesión">
+                </div>
+            </div>
+        </form>
+    }
+    else{
+    <head>
+        <h2>Logueo de Usuarios</h2>
+    </head>
+    <section>
+        <form asp-action="Login" method="post">
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label" for="Usuario">Usuario: </label>
+                <div class="col-sm-6">
+                    <input class="form-control" type="text" id="Usuario" name="Usuario" placeholder="Ingrese su usuario">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label" for="Contraseña">Contraseña: </label>
+                <div class="col-sm-6">
+                    <input class="form-control" type="password" id="Contraseña" name="Contraseña" placeholder="Ingrese su contraseña">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="offset-sm-3 col-sm-6 d-grid">
+                    <input class="btn btn-primary" type="submit" value="Ingresar">
+                </div>
+            </div>
+        </form>
+    </section>
+    }
+</body>

@@ -1,0 +1,59 @@
+﻿@model PedidoAltaViewModel
+
+<body>
+<header>
+    <main>
+        <h2>Registro de Pedidos</h2>
+        <form asp-controller="Pedido" asp-action="AltaPedido" method="post">
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label" for="Observacion">Observación: </label>
+                <div class="col-sm-6">
+                    <input class="form-control" type="text" id="Observacion" name="Observacion" placeholder="Escriba una observación">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label" for="Estado">Estado:</label>
+                <div class="col-sm-6">
+                    <input class="form-control" type="text" id="Estado" name="Estado">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label" asp-for="@Model.Clientes">Cliente:</label>
+                <div class="col-sm-6">
+                    <select class="form-select form-select-sm" name="Cliente" id="cliente">
+                        @foreach (var cliente in Model.Clientes)
+                        {
+                            <option value="@cliente.Id">@cliente.Nombre</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label" asp-for="@Model.Cadetes">Cadete:</label>
+                <div class="col-sm-6">
+                    <select class="form-select form-select-sm" name="Cadete" id="cadete">
+                        @foreach (var cadete in Model.Cadetes)
+                        {
+                            <option value="@cadete.Id">@cadete.Nombre</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="offset-sm-3 col-sm-3 d-grid">
+                    <input class="btn btn-primary" type="submit" value="Crear">
+                </div>
+                <div class="col-sm-3 d-grid">
+                    <input class="btn btn-primary" type="reset" value="Borar">
+                </div>
+            </div>
+
+        </form>
+    </main>
+</header>
+</body>

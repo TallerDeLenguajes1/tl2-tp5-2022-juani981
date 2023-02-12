@@ -1,0 +1,60 @@
+﻿@model UsuarioViewModel
+
+@{
+    ViewBag.Title = "Modificar Usuario";
+    Layout = "_Layout";
+}
+
+<body>
+<header>
+    <main>
+        <h2>@ViewBag.Title</h2>
+            
+        
+        <form asp-controller="Usuario" asp-action="ModificarUsuario" method="post">
+
+            @Html.HiddenFor(model => model.Id)
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label" asp-for="Nombre">Nombre</label>
+                <div class="col-sm-6">
+                    <input class="form-control" type="text" asp-for="Nombre" value="@Model.Nombre">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label" asp-for="Usuario">Usuario</label>
+                <div class="col-sm-6">
+                    <input class="form-control" type="text" asp-for="Usuario" value="@Model.Usuario">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label" asp-for="Contraseña">Teléfono</label>
+                <div class="col-sm-6">
+                    <input class="form-control" type="password" asp-for="Contraseña" value="@Model.Contraseña">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label" asp-for="Rol">Rol</label>
+                <div class="col-sm-6">
+                    <input class="form-control" type="text" asp-for="Rol" value="@Model.Rol">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="offset-sm-3 col-sm-3 d-grid">
+                    <input class="btn btn-primary" type="submit" value="Modificar">
+                </div>
+                <div class="col-sm-3 d-grid">
+                    <input class="btn btn-primary" type="reset" value="Borar">
+                </div>
+            </div>
+
+        </form>
+        }
+        }
+    </main>
+</header>
+</body>

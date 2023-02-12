@@ -1,0 +1,73 @@
+﻿@model List<PedidoViewModel>
+@inject IHttpContextAccessor HttpContextAccess
+
+if(HttpContextAccess.HttpContext?.Session.GetString(SessionRol) == "admin"){
+<h2>Lista de Pedidos</h2>
+
+<nav class="row my-3">
+<a class="col-2 btn btn-primary btn-sm me-3" href="/Pedido/AltaPedido">Crear nuevo pedido</a>
+
+
+<form class="col" asp-controller="Pedido" asp-action="BuscarTodosPorCliente" method="get">
+    <div class="row">
+        <label class="col-auto" for="Cliente">Buscar por Cliente</label>
+        <div class="col">
+            <input class="form-control" type="text" id="Cliente" name="cliente" placeholder="Ingrese un ID para buscar">
+        </div>
+        <div class="col-auto d-grid">
+            <input class="btn btn-primary" type="submit" value="Buscar">
+        </div>
+    </div>
+</form>
+
+<form class="col" asp-controller="Pedido" asp-action="BuscarTodosPorCadete" method="get">
+    <div class="row">
+        <label class="col-auto" for="Cliente">Buscar por Cadete</label>
+        <div class="col">
+            <input class="form-control" type="text" id="Cadete" name="cadete" placeholder="Ingrese un ID para buscar">
+        </div>
+        <div class="col-auto d-grid">
+            <input class="btn btn-primary" type="submit" value="Buscar">
+        </div>
+    </div>
+</form>
+</nav>
+
+<section>
+    <article>
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Observación</th>
+                <th>Estado</th>
+                <th>Cliente</th>
+                <th>Cadete</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            @foreach (var pedido in Model)
+            {
+                <tr>
+                    <td>@pedido.Id</td>
+                    <td>@pedido.Observacion</td>
+                    <td>@pedido.Estado</td>
+                    <td>@pedido.Cliente</td>
+                    <td>@pedido.Cadete</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" href="/Pedido/ModificarPedido?id=@pedido.Id">Editar</a>
+                        <a class="btn btn-danger btn-sm" href="/Pedido/BajaPedido?id=@pedido.Id">Eliminar</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+
+    </article>
+
+
+
+</section>
+}

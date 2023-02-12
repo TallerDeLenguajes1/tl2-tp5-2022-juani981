@@ -1,0 +1,40 @@
+@model List<UsuarioViewModel>
+
+@{
+    ViewData["Title"]="Lista de Usuarios";
+}
+<h2>Lista de Usuarios</h2>
+
+<a class="btn btn-primary btn-sm" href="/Usuario/AltaUsuario">Crear nuevo usuario</a>
+
+<section>
+    <article>
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Usuario</th>
+                <th>Rol</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            @foreach (var usuario in Model)
+            {
+                <tr>
+                    <td>@usuario.Id</td>
+                    <td>@usuario.Nombre</td>
+                    <td>@usuario.Usuario</td>
+                    <td>@usuario.Rol</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" href="/Usuario/ModificarUsuario?id=@usuario.Id">Editar</a>
+                        <a class="btn btn-danger btn-sm" href="/Usuario/BajaUsuario?id=@usuario.Id">Eliminar</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+
+    </article>
+</section>
