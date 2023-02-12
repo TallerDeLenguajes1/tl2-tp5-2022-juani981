@@ -1,0 +1,18 @@
+﻿@inject IHttpContextAccessor HttpContextAccess
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Cadetería</h1>
+    @{  
+        var rolUsuario = HttpContextAccess.HttpContext?.Session.GetString(SessionRol);
+        if(rolUsuario is null){
+            <p>Accediendo como invitado</p>
+            <p>Debe Loguearse con sus credenciales</p>
+        }
+        else{
+            <p>Bienvenido @HttpContextAccess.HttpContext?.Session.GetString(SessionNombre)</p>
+        }
+    }
+</div>
