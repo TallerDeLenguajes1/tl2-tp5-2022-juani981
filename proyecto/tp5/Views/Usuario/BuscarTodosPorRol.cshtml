@@ -5,9 +5,7 @@
 }
 <h2>Lista de Usuarios</h2>
 
-<nav class="row my-3">
-
-<a class="col-2 btn btn-primary btn-sm" href="/Usuario/AltaUsuario">Crear nuevo usuario</a>
+<a class="btn btn-primary btn-sm" href="/Usuario/AltaUsuario">Crear nuevo usuario</a>
 
 <form class="col" asp-controller="Usuario" asp-action="BuscarTodosPorRol" method="get">
     <div class="row">
@@ -16,7 +14,7 @@
             <select class="form-select form-select-sm" name="Rol">           
             <option value="admin">Administrador</option>             
             <option value="cadete">Cadete</option>    
-            <option value="sinFiltro" selected>Mostrar Todos</option>
+            <option value="sinFiltro">Mostrar Todos</option>
         </select>
         </select>
         </div>
@@ -25,7 +23,7 @@
         </div>
     </div>
 </form>
-</nav>
+
 <section>
     <article>
         <table class="table table-bordered table-striped">

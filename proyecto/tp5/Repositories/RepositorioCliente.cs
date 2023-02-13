@@ -117,7 +117,11 @@ public class RepositorioCliente : Repositorio<Cliente>
         {
             using var conexion = new SqliteConnection(CadenaConexion);
             var peticion = new SqliteCommand(consulta, conexion);
+            conexion.Open();
+
             peticion.Parameters.AddWithValue("@id", id);
+
+
             peticion.ExecuteReader();
             conexion.Close();
         }

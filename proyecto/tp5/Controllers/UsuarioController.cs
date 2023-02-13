@@ -10,14 +10,13 @@ namespace tp5.Controllers;
     public class UsuarioController : Controller
     {
         private readonly ILogger<UsuarioController> _logger;
-        //private readonly IRepositorio<Usuario> _repositorio;
+
         private readonly IRepositorioUsuario _repositorioUsuario;
         private readonly IMapper _mapper;
 
         public UsuarioController(ILogger<UsuarioController> logger,  IRepositorioUsuario repositorioUsuario,  IMapper mapper)
         {
             _logger = logger;
-            //_repositorio = repositorio;
             _repositorioUsuario = repositorioUsuario;
             _mapper = mapper;
         }
@@ -65,7 +64,7 @@ namespace tp5.Controllers;
     {
         if (ModelState.IsValid)
         {
-            var Usuario = _mapper.Map<Usuario>(usuarioViewModel);
+            Usuario Usuario = _mapper.Map<Usuario>(usuarioViewModel);
             _repositorioUsuario.Actualizar(Usuario);
         }
         else
@@ -75,6 +74,19 @@ namespace tp5.Controllers;
         }
 
         return RedirectToAction("Index");
+    }
+    [HttpGet]
+    public IActionResult BuscarTodosPorRol(string rol){
+        if (rol == "sinFiltro")
+        {
+            return RedirectToAction("Index");
+        }
+        else{
+        var usuariosPorRol = _repositorioUsuario.BuscarTodosPorRol(rol);
+        //Ojo al mappear objetos, y listas de objetos.
+        List<UsuarioViewModel> usuariosViewModel = _mapper.Map<List<UsuarioViewModel>>(usuariosPorRol);
+        return View(usuariosViewModel);
+        }
     }
 
     [HttpGet]
@@ -94,7 +106,8 @@ namespace tp5.Controllers;
     [HttpPost]
     public IActionResult Login(UsuarioViewModel usuarioViewModel){
         try{
-            var temp = _repositorioUsuario.BuscarPorUsuario(usuarioViewModel.Usuario);
+            //var temp = _repositorioUsuario.BuscarPorUsuario(usuarioViewModel.Usuario);
+            var temp = _mapper.Map<Usuario>(usuarioViewModel);
             var usuario = _repositorioUsuario.Verificar(temp);
             //var usuario = _mapper.Map<Usuario>(usuarioViewModel);
            //var usuarioOK = _repositorioUsuario.Verificar(usuario);

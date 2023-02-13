@@ -129,9 +129,11 @@ namespace tp5.Repositories;
             try{
                 using var conexion = new SqliteConnection(CadenaConexion);
                 var peticion = new SqliteCommand(consulta, conexion);
-                peticion.Parameters.AddWithValue("@id", id.ToString());
                 conexion.Open();
-                peticion.ExecuteReader();
+
+                peticion.Parameters.AddWithValue("@id", id.ToString());
+
+                peticion.ExecuteNonQuery();
                 conexion.Close();
             }
             catch (Exception e)
@@ -156,7 +158,7 @@ namespace tp5.Repositories;
 
                 //var salida = new Usuario();
                 using var reader = peticion.ExecuteReader();*/
-                var usuarioDB = BuscarPorId(usuario.id);
+                var usuarioDB = BuscarPorUsuario(usuario.usuario);
                 if (usuario.usuario==usuarioDB.usuario && usuario.contraseña==usuarioDB.contraseña)
                 {
                     //conexion.Close();

@@ -2,7 +2,8 @@
 
 public class ClienteViewModel
 {
-    [Required] public int Id { get; set; }
+    [Required] 
+    public int Id { get; set; }
 
     [Required]
     [StringLength(100)]

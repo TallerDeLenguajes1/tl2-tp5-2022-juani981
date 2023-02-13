@@ -133,8 +133,12 @@ public class RepositorioCadete : Repositorio<Cadete>
         {
             using var conexion = new SqliteConnection(CadenaConexion);
             var peticion = new SqliteCommand(consulta, conexion);
+            conexion.Open();
+
             peticion.Parameters.AddWithValue("@id", id);
-            peticion.ExecuteReader();
+
+
+            peticion.ExecuteNonQuery();
             conexion.Close();
         }
         catch (Exception e)

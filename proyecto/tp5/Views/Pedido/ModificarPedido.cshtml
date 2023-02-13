@@ -15,7 +15,7 @@
         
         <form asp-controller="Pedido" asp-action="ModificarPedido" method="post">
 
-            @Html.HiddenFor(model => model.Id);
+            @Html.HiddenFor(model => model.Id)
 
             <div class="row mb-3" id="EstadoWrapper">
                 <label class="col-sm-3 col-form-label" asp-for="Estado">Estado:</label>
@@ -35,7 +35,7 @@
             
 
             <div class="row mb-3" id="CadeteWrapper">
-                <label class="col-sm-3 col-form-label" asp-for="Cadete">Cadete:</label>
+                <label class="col-sm-3 col-form-label" asp-for="Cadete">Cliente:</label>
                 <div class="col-sm-6">
                     <select class="form-select form-select-sm" asp-for="Cadete">
                         @foreach (var cadete in Model.Cadetes)
@@ -47,6 +47,25 @@
                             else
                             {
                                 <option value="@cadete.Id">@cadete.Nombre</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3" id="ClienteWrapper">
+                <label class="col-sm-3 col-form-label" asp-for="Cliente">Cadete:</label>
+                <div class="col-sm-6">
+                    <select class="form-select form-select-sm" asp-for="Cliente">
+                        @foreach (var cliente in Model.Clientes)
+                        {
+                            @if (cliente.Id == @Model.Cliente)
+                            {
+                                <option value="@cliente.Id" selected>@cliente.Nombre</option>
+                            }
+                            else
+                            {
+                                <option value="@cliente.Id">@cliente.Nombre</option>
                             }
                         }
                     </select>
@@ -71,7 +90,6 @@
                 <style>
                     #ObservacionWrapper{display:none}
                     #CadeteWrapper{display:none}
-                    #ocultarBoton{display:none;background-color: gray;}
                 </style>
             }
             @if (RoldeSesion is null){

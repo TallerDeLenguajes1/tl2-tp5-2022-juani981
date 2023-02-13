@@ -95,6 +95,7 @@ public class PedidoController : Controller
         
         var pedidoModificadoViewModel = _mapper.Map<PedidoModificadoViewModel>(pedido);
         pedidoModificadoViewModel.Cadetes = cadetesViewModel;
+        pedidoModificadoViewModel.Clientes = clientesViewModel;
         
         return View(pedidoModificadoViewModel);
     }
